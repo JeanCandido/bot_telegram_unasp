@@ -13,5 +13,19 @@ def updates():
   return last_update["message"]["chat"]["id"], last_update["message"]["text"], last_date
 
 last_date = 0
+print(updates())
+while True:
+  try:   
+    upd = updates()
+    if upd[2] > last_date:
+      id = upd[0]
+      text = eval(upd[1])
+      last_date = upd[2]
+      requests.post(
+        url=f"https://api.telegram.org/bot{os.getenv('TELEGRAM_TOKEN')}/sendMessage", 
+      data={"chat_id": id, "text": text}
+      ).json()
+  except:
+      pass
 
-print(updates()[0])
+    
