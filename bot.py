@@ -14,4 +14,21 @@ def updates():
 
 last_date = 0
 
-print(updates()[0])
+while True:
+  try:
+    upd = updates()
+    if upd[2] > last_date:
+      id = upd[0]
+      text = eval(upd[1])
+      last_date = upd[2]
+      requests.post(
+        url=f"https://api.telegram.org/bot{os.getenv('TELEGRAM_TOKEN')}/sendMessage",
+        data= {"chat_id": id, "text": text}
+      ).json()
+    else:
+      requests.post(
+        url=f"https://api.telegram.org/bot{os.getenv('TELEGRAM_TOKEN')}/sendMessage",
+        data= {"chat_id": id, "text": "Operação Impossivel"}
+      ).json()
+  except:
+    pass
