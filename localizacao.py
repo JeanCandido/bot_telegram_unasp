@@ -20,10 +20,7 @@ id = upd[0]
 
 x = eval(upd[1])
 
-requests.post(
-    url=f"https://api.telegram.org/bot{os.getenv('TELEGRAM_TOKEN')}/sendLocation",
-    data= {"chat_id": id, "latitude": x[0], "longitude": x[1]}
-    )
+
 
 print(x)
 
@@ -46,3 +43,35 @@ print(x)
 #   except:
 #     pass
 
+import os
+import requests
+from dotenv import load_dotenv
+
+load_dotenv(".env")
+
+s = requests.Session()
+res = s.post(
+    f"http://api.olhovivo.sptrans.com.br/v2.1/Login/Autenticar?token={os.getenv('SPTRANS_TOKEN')}"
+)
+
+linhas_lapa = s.get(
+    "http://api.olhovivo.sptrans.com.br/v2.1/Linha/Buscar?termosBusca=Penha"
+)
+linhas_lapa = linhas_lapa.json()
+cl = linhas_lapa[0]['cl']
+
+res = s.get(
+    f"http://api.olhovivo.sptrans.com.br/v2.1/Parada/BuscarParadasPorLinha?codigoLinha={cl}"
+)
+paradas = res.json()
+
+pos = s.get(
+    "http://api.olhovivo.sptrans.com.br/v2.1//Posicao/Linha?codigoLinha=175"
+)
+x1 = pos.json()['vs'][0]['py']
+x2 = pos.json()['vs'][0]['px']
+
+requests.post(
+    url=f"https://api.telegram.org/bot{os.getenv('TELEGRAM_TOKEN')}/sendLocation",
+    data= {"chat_id": id, "latitude": x1, "longitude": x2}
+    )
