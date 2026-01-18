@@ -18,7 +18,7 @@ def updates():
 
 last_date = 0
 
-
+print(updates()[0])
 while True:
   try:
     upd = updates()
