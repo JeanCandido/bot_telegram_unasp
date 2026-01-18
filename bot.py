@@ -18,9 +18,7 @@ def updates():
 
 last_date = 0
 
-<<<<<<< HEAD
-print(updates()[0])
-=======
+
 while True:
   try:
     upd = updates()
@@ -51,4 +49,3 @@ while True:
       ).json()
   except:
     pass
->>>>>>> afa4985284e4ab5f4ca77e0bf3ef2f5ef2698e1b

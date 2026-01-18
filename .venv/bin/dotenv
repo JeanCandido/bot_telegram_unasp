@@ -1,4 +1,4 @@
-#!/home/jeancandido/Documentos/GitHub/bot_telegram_unasp/.venv/bin/python
+#!/home/jean/Documentos/GitHub/bot_telegram_unasp/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

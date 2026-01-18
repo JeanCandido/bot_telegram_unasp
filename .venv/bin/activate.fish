@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/jeancandido/Documentos/GitHub/bot_telegram_unasp/.venv
+set -gx VIRTUAL_ENV /home/jean/Documentos/GitHub/bot_telegram_unasp/.venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
